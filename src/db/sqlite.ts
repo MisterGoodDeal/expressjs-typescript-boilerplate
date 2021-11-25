@@ -1,6 +1,6 @@
 import { SQLiteQueryParams, SQLiteSelectParams } from "../utils/interfaces";
 
-const db = require("better-sqlite3")("./src/db/sqlite.db");
+const db = require("better-sqlite3")("./src/db/database.db");
 
 /**
  * Usage :
