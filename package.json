@@ -1,7 +1,7 @@
 {
   "name": "expressjs-typescript-boilerplate",
   "version": "1.0.0",
-  "description": "API server for Le Saint Patrick",
+  "description": "ExpressJS & TypeScript boilerplate",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && node build/index.js -r dotenv/config",
@@ -10,7 +10,6 @@
   },
   "keywords": [
     "server",
-    "geobench",
     "express",
     "mysql"
   ],
