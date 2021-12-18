@@ -1,4 +1,4 @@
-import { route } from "./routes/route";
+import { getRoutes } from "./services/routes";
 import { webServices } from "./services/web";
 
 const env = require("dotenv").config();
@@ -16,7 +16,6 @@ app.use((req: any, res: any, next: any) => {
   res.append("version", process.env.VERSION);
   res.append("Access-Control-Allow-Origin", "*");
   res.append("Access-Control-Allow-Headers", "*");
-
   next();
 });
 
@@ -24,6 +23,11 @@ app.get("/", function (req: any, res: any) {
   res.status(200).json({ "server-name": { version: process.env.VERSION } });
 });
 
-route(app);
+const routes = getRoutes();
+routes.forEach((route: string) => {
+  import("./routes/" + route).then((r: any) => {
+    r.default(app);
+  });
+});
 
 webServices({ app: app, usingHttps: false, httpsDomain: "" });
