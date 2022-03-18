@@ -12,3 +12,8 @@ export interface SQLiteQueryParams {
 export interface SQLiteSelectParams {
   query: string;
 }
+
+export interface JWTProps {
+  id: number;
+  uuid: string;
+}
