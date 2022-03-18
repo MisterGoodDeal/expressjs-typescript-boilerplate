@@ -45,7 +45,7 @@ Build and start the project
 npm start
 ```
 
-## Middleware
+## Authentification middleware
 
 This project includes a basic middleware in order to handle authentication using JWT.
 
