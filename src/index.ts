@@ -1,3 +1,6 @@
+import SecretQuestions from "./db/models/SecretQuestions";
+import User from "./db/models/User";
+import { initDatabase } from "./db/sequelize";
 import { getRoutes } from "./services/routes";
 import { webServices } from "./services/web";
 
@@ -21,6 +24,20 @@ app.use((req: any, res: any, next: any) => {
 
 app.get("/", function (req: any, res: any) {
   res.status(200).json({ "server-name": { version: process.env.VERSION } });
+});
+
+app.get("/initDb", async function (req: any, res: any) {
+  await initDatabase();
+  res.status(200).json({ done: true });
+});
+
+app.get("/users", async function (req: any, res: any) {
+  const { username } = req.params;
+  const user = await User.findAll({
+    include: [SecretQuestions],
+  });
+
+  res.status(200).json(user);
 });
 
 const routes = getRoutes();
